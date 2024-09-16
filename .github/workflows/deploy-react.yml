@@ -5,6 +5,17 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      target:
+        description: 'Deployment target'
+        required: true
+        default: 'dhanayantri'
+        type: choice
+        options:
+          - dhanayantri
+          - campusplus360
+          - greenbugdemo
+          - asccendbta
 
 jobs:
   deploy:
@@ -32,7 +43,20 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
 
+    - name: Set target directory based on input
+      id: set-target-directory
+      run: |
+        case "${{ github.event.inputs.target }}" in
+          dhanayantri) echo "TARGET_DIRECTORY=/var/www/html/DhanayantriIndia" >> $GITHUB_ENV ;;
+          campusplus360) echo "TARGET_DIRECTORY=/var/www/html/superadmin" >> $GITHUB_ENV ;;
+          greenbugdemo) echo "TARGET_DIRECTORY=/var/www/html/tekbizdemo.tekbizsoft.in" >> $GITHUB_ENV ;;
+          asccendbta) echo "TARGET_DIRECTORY=/var/www/html/asccendbta.campusplus360.in" >> $GITHUB_ENV ;;
+        esac
+
     - name: Deploy to EC2
       run: |
-        rsync -avz --delete client/build/ ubuntu@${{ secrets.SERVER_IP }}:/var/www/html/react-app || exit 1
+        rsync -avz --delete client/build/ ubuntu@${{ secrets.SERVER_IP }}:$TARGET_DIRECTORY || exit 1
         ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.SERVER_IP }} "sudo systemctl restart apache2 || exit 1"
+
+    - name: Verify deployment
+      run: ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.SERVER_IP }} "ls -la $TARGET_DIRECTORY"
