@@ -27,6 +27,8 @@ jobs:
       
     - name: Show current directory
       run: pwd
+    - name: Show current directory
+      run: ls -la
 
 
     - name: Set up SSH
