@@ -31,7 +31,8 @@ jobs:
       run: ls -la
     - name: Print the workspace path
       run: echo $GITHUB_WORKSPACE
-
+    - name: Show current directory
+      run: cd /home/runner/work/sample/sample
 
     - name: Set up SSH
       run: |
