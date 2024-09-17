@@ -33,6 +33,8 @@ jobs:
       run: echo $GITHUB_WORKSPACE
     - name: Show current directory
       run: cd /home/runner/work/sample/sample
+    - name: Show current directory
+      run: ls -ltr
 
     - name: Set up SSH
       run: |
