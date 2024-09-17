@@ -37,6 +37,8 @@ jobs:
       run: cd /home/runner/work/sample/sample/client
     - name: Show current directory
       run: ls -la $GITHUB_WORKSPACE/client/build/
+    - name: Create directory
+      run: mkdir -p /home/runner/work/sample/sample/client/xyz
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
