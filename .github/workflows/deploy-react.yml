@@ -29,6 +29,8 @@ jobs:
       run: pwd
     - name: Show current directory
       run: ls -la
+    - name: Print the workspace path
+      run: echo $GITHUB_WORKSPACE
 
 
     - name: Set up SSH
