@@ -37,6 +37,13 @@ jobs:
       run: cd /home/runner/work/sample/sample/client
     - name: Show current directory
       run: ls -la $GITHUB_WORKSPACE/client/build/
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+          name: build-artifacts
+          path: /home/runner/work/sample/sample/client/xyz
+    - name: Show current directory
+      run: ls -la $GITHUB_WORKSPACE/client/xyz/  
     - name: Set up SSH
       run: |
         mkdir -p ~/.ssh
