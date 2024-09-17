@@ -24,6 +24,10 @@ jobs:
 
     - name: Build React app
       run: npm run build --prefix client
+      
+    - name: Show current directory
+      run: pwd
+
 
     - name: Set up SSH
       run: |
