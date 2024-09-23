@@ -17,7 +17,8 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Prasanthi's World from React!</h1>
+      <h1>Welcome to Prasanthi's World !</h1>
+      <h1>Prasanthi is AWESOME!!!</h1>
       <p>{message}</p>
     </div>
   );
