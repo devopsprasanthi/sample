@@ -17,8 +17,8 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Welcome to Prasanthi's World !</h1>
-      <h1>Prasanthi is AWESOME!!!</h1>
+      <h1>Welcome to SiriusLync !</h1>
+      <h1>Priya is AWESOME!!!</h1>
       <p>{message}</p>
     </div>
   );
